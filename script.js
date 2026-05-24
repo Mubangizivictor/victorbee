@@ -1,57 +1,25 @@
-const words = [
+const texts=[
 
 "Flutter Developer",
-"Android Apps",
-"iOS Apps",
-"Web Experiences"
+"Android",
+"iOS",
+"Web"
 
 ];
 
-let index = 0;
-
-const typing = document.getElementById(
-'typing'
-);
+let i=0;
 
 setInterval(()=>{
 
-typing.innerText=words[index];
+document.getElementById(
+"typing"
+).innerText=texts[i];
 
-index++;
+i++;
 
-if(index>=words.length){
+if(i>=texts.length){
 
-index=0;
+i=0;
 }
 
 },1500);
-
-
-
-const reveals=document.querySelectorAll(
-'.reveal'
-);
-
-window.addEventListener(
-'scroll',
-()=>{
-
-reveals.forEach(
-card=>{
-
-let top=
-card.getBoundingClientRect().top;
-
-if(
-top < window.innerHeight-100
-){
-
-card.style.opacity=1;
-
-card.style.transform=
-'translateY(0)';
-}
-
-});
-}
-);
