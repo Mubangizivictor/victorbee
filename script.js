@@ -1,25 +1,119 @@
-const texts=[
+const words=[
 
 "Flutter Developer",
-"Android",
-"iOS",
-"Web"
+"Android Expert",
+"iOS Builder",
+"Web Creator"
 
 ];
 
-let i=0;
+let wordIndex=0;
+let charIndex=0;
 
-setInterval(()=>{
-
+const typing=
 document.getElementById(
 "typing"
-).innerText=texts[i];
+);
 
-i++;
+function type(){
 
-if(i>=texts.length){
+if(charIndex<
+words[wordIndex].length){
 
-i=0;
+typing.textContent +=
+
+words[wordIndex].charAt(
+charIndex
+);
+
+charIndex++;
+
+setTimeout(
+type,
+100
+);
+
 }
 
-},1500);
+else{
+
+setTimeout(
+erase,
+1500
+);
+
+}
+
+}
+
+function erase(){
+
+if(charIndex>0){
+
+typing.textContent=
+
+words[wordIndex].substring(
+0,
+charIndex-1
+);
+
+charIndex--;
+
+setTimeout(
+erase,
+50
+);
+
+}
+
+else{
+
+wordIndex++;
+
+if(wordIndex>=words.length){
+
+wordIndex=0;
+
+}
+
+setTimeout(
+type,
+300
+);
+
+}
+
+}
+
+type();
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const reveals=
+document.querySelectorAll(
+".reveal"
+);
+
+reveals.forEach(item=>{
+
+const top=
+item.getBoundingClientRect()
+.top;
+
+if(
+top<
+window.innerHeight-100
+){
+
+item.classList.add(
+"active"
+);
+
+}
+
+});
+
+}
+);
