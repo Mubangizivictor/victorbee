@@ -203,7 +203,7 @@
     }
 
     /* SECTION SHARED */
-    section { padding: 100px 5%; }
+    section { padding: 70px 5%; }
     .section-label {
       font-family: var(--font-mono); font-size: 0.7rem;
       color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
@@ -272,67 +272,85 @@
     .portfolio-header {
       display: flex; align-items: flex-end;
       justify-content: space-between; flex-wrap: wrap; gap: 16px;
-      margin-bottom: 48px;
+      margin-bottom: 32px;
     }
     .proj-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
     }
     .proj-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       position: relative;
-      transition: border-color 0.3s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-      display: flex; flex-direction: column;
+      transition: border-color 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      display: flex; flex-direction: row;
+      align-items: stretch;
     }
     .proj-card:hover {
-      border-color: rgba(245,200,66,0.3);
-      transform: translateY(-6px);
+      border-color: rgba(245,200,66,0.4);
+      transform: translateY(-4px);
     }
-    .proj-card.large { grid-column: span 7; }
-    .proj-card.medium { grid-column: span 5; }
-    .proj-card.small { grid-column: span 4; }
+    .proj-img-wrap {
+      width: 100px; min-width: 100px;
+      overflow: hidden; flex-shrink: 0;
+    }
     .proj-img {
-      width: 100%; aspect-ratio: 16/9;
+      width: 100%; height: 100%;
       object-fit: cover; display: block;
-      filter: grayscale(30%) brightness(0.85);
-      transition: filter 0.4s;
+      filter: grayscale(40%) brightness(0.8);
+      transition: filter 0.4s, transform 0.4s;
     }
-    .proj-card:hover .proj-img { filter: grayscale(0%) brightness(1); }
-    .proj-content { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-    .proj-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .proj-card:hover .proj-img { filter: grayscale(0%) brightness(1); transform: scale(1.06); }
+    .proj-content { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
     .proj-tag {
-      font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.06em;
-      padding: 3px 10px; border-radius: 3px;
-      background: rgba(245,200,66,0.1);
-      color: var(--accent); border: 1px solid rgba(245,200,66,0.2);
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.05em;
+      padding: 2px 8px; border-radius: 3px;
+      background: rgba(245,200,66,0.09);
+      color: var(--accent); border: 1px solid rgba(245,200,66,0.18);
     }
     .proj-title {
       font-family: var(--font-display);
-      font-size: 1.25rem; font-weight: 700;
-      margin-bottom: 10px; line-height: 1.2;
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 6px; line-height: 1.2;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .proj-desc {
-      font-size: 0.84rem; color: var(--muted); line-height: 1.6;
-      flex: 1; margin-bottom: 20px;
+      font-size: 0.76rem; color: var(--muted); line-height: 1.5;
+      flex: 1; margin-bottom: 10px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .proj-links { display: flex; gap: 12px; margin-top: auto; }
+    .proj-links { display: flex; gap: 10px; margin-top: auto; }
     .proj-link {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: var(--font-mono); font-size: 0.7rem;
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: 0.64rem;
       color: var(--muted); text-decoration: none;
       transition: color 0.2s;
     }
     .proj-link:hover { color: var(--accent); }
     .proj-number {
-      position: absolute; top: 16px; right: 16px;
-      font-family: var(--font-mono); font-size: 0.65rem;
+      position: absolute; top: 10px; right: 10px;
+      font-family: var(--font-mono); font-size: 0.58rem;
       color: var(--muted); letter-spacing: 0.05em;
-      background: rgba(8,11,15,0.7); padding: 3px 8px; border-radius: 3px;
+      background: rgba(8,11,15,0.75); padding: 2px 6px; border-radius: 3px;
     }
+    /* GitHub more banner */
+    .github-more {
+      margin-top: 24px;
+      border: 1px dashed rgba(245,200,66,0.25);
+      border-radius: 10px;
+      padding: 20px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+      background: rgba(245,200,66,0.03);
+    }
+    .github-more-text {
+      font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted);
+    }
+    .github-more-text strong { color: var(--text); }
 
     /* INTERACTIVE METRICS WIDGET */
     .metrics-widget {
@@ -505,8 +523,7 @@
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .proj-card.large, .proj-card.medium { grid-column: span 12; }
-      .proj-card.small { grid-column: span 6; }
+      .proj-grid { grid-template-columns: 1fr 1fr; }
       .skills-dashboard { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
@@ -514,7 +531,7 @@
       .hero h1 { font-size: 2.8rem; }
       .terminal-widget { display: none; }
       .metrics-widget { grid-template-columns: repeat(2, 1fr); }
-      .proj-card.small { grid-column: span 12; }
+      .proj-grid { grid-template-columns: 1fr; }
       .contact-split { grid-template-columns: 1fr; }
       .skills-dashboard { grid-template-columns: 1fr; }
       nav ul { display: none; }
@@ -524,7 +541,7 @@
       body { cursor: auto; }
     }
     @media (max-width: 480px) {
-      section { padding: 60px 5%; }
+      section { padding: 50px 5%; }
       .metrics-widget { grid-template-columns: 1fr; }
       .social-grid { grid-template-columns: 1fr; }
     }
@@ -638,7 +655,7 @@
   </section>
 
   <!-- PORTFOLIO -->
-  <section id="work" style="padding-top: 100px;">
+  <section id="work" style="padding-top: 80px;">
     <div class="portfolio-header reveal">
       <div>
         <div class="section-label">Selected Work</div>
@@ -650,6 +667,16 @@
     </div>
 
     <div class="proj-grid" id="projectGrid"></div>
+
+    <div class="github-more reveal">
+      <div>
+        <div class="github-more-text"><strong>More projects on GitHub →</strong></div>
+        <div class="github-more-text" style="margin-top:4px; font-size:0.7rem;">I build constantly. Browse all repos for experiments, utilities, and works-in-progress.</div>
+      </div>
+      <a href="https://github.com/Mubangizivictor" target="_blank" class="btn-ghost" style="white-space:nowrap;">
+        <i class="fab fa-github"></i> github.com/Mubangizivictor
+      </a>
+    </div>
   </section>
 
   <!-- SKILLS -->
@@ -779,31 +806,66 @@
       tEl.innerHTML = content + content;
     }
 
-    // PROJECTS DATA
+    // PROJECTS DATA — 5 real apps
     const projects = [
-      { title: 'FoodieDash', desc: 'Flutter food delivery app with realtime order tracking, Firestore integration, dynamic cart, and push notifications. Cross-platform iOS & Android.', tags: ['Flutter', 'Firebase', 'Dart'], repo: 'https://github.com/Mubangizivictor/FoodieDash-Flutter', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80', size: 'large', num: '01' },
-      { title: 'CryptoVault', desc: 'Live crypto portfolio tracker with animated charts, multi-wallet support, and WebSocket price feeds.', tags: ['Flutter', 'Riverpod', 'API'], repo: 'https://github.com/Mubangizivictor/CryptoVault-App', img: 'https://images.unsplash.com/photo-1621504450181-5d356f61d307?w=800&q=80', size: 'medium', num: '02' },
-      { title: 'Messenger Pro', desc: 'E2E encrypted messaging with voice notes and read receipts.', tags: ['Flutter', 'Socket.io'], repo: 'https://github.com/Mubangizivictor/MessengerPro', img: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80', size: 'small', num: '03' },
-      { title: 'ShopEase', desc: 'Full e-commerce marketplace with Stripe payments, product filters, and admin dashboard.', tags: ['React', 'Node.js', 'Stripe'], repo: 'https://github.com/Mubangizivictor/ShopEase-Marketplace', img: 'https://images.unsplash.com/photo-1556742049-0cf5a6c4a3b8?w=800&q=80', size: 'small', num: '04' },
-      { title: 'FitTrack Pro', desc: 'Health & fitness app with workout plans, step tracking, and Wear OS support.', tags: ['Kotlin', 'Jetpack', 'Health SDK'], repo: 'https://github.com/Mubangizivictor/FitTrack-Health', img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80', size: 'small', num: '05' },
-      { title: 'MovieFlix', desc: 'Movie discovery app with TMDB API, trailer playback, and offline watchlist.', tags: ['Flutter', 'Bloc', 'REST'], repo: 'https://github.com/Mubangizivictor/MovieFlix-App', img: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80', size: 'small', num: '06' },
+      {
+        title: 'Expense Tracker',
+        desc: 'Add/delete transactions, Firebase Firestore, weekly spending chart, BLoC state management.',
+        tags: ['Flutter', 'Firebase', 'BLoC', 'Charts'],
+        repo: 'https://github.com/Mubangizivictor/expense-tracker',
+        img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&q=70',
+        num: '01'
+      },
+      {
+        title: 'Prayer Times',
+        desc: 'Fetches 5 daily prayer times via Aladhan API, push notifications, offline cache.',
+        tags: ['Flutter', 'REST API', 'Notifications', 'Hive'],
+        repo: 'https://github.com/Mubangizivictor/prayer-times-app',
+        img: 'https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=300&q=70',
+        num: '02'
+      },
+      {
+        title: 'Business Catalog',
+        desc: '10 shops with images, local search filter, Firebase favorites, email/password auth.',
+        tags: ['Flutter', 'Firebase Auth', 'Firestore', 'Search'],
+        repo: 'https://github.com/Mubangizivictor/small-business-catalog',
+        img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&q=70',
+        num: '03'
+      },
+      {
+        title: 'Todo with Deadlines',
+        desc: 'Tasks with date picker, overdue highlights, SQLite/Hive storage, dark/light theme toggle.',
+        tags: ['Flutter', 'Hive', 'SQLite', 'Theming'],
+        repo: 'https://github.com/Mubangizivictor/todo-deadlines',
+        img: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=300&q=70',
+        num: '04'
+      },
+      {
+        title: 'Victor\'s Original App',
+        desc: 'Two Firebase collections with relationships, image upload via Storage, loading states & error handling.',
+        tags: ['Flutter', 'Firebase Storage', 'Architecture'],
+        repo: 'https://github.com/Mubangizivictor',
+        img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300&q=70',
+        num: '05'
+      },
     ];
 
     const grid = document.getElementById('projectGrid');
     if(grid) {
       projects.forEach(p => {
         const card = document.createElement('div');
-        card.className = `proj-card ${p.size} reveal`;
+        card.className = 'proj-card reveal';
         card.innerHTML = `
-          <img class="proj-img" src="${p.img}" alt="${p.title}" loading="lazy">
+          <div class="proj-img-wrap">
+            <img class="proj-img" src="${p.img}" alt="${p.title}" loading="lazy">
+          </div>
           <div class="proj-number">${p.num}</div>
           <div class="proj-content">
             <div class="proj-tags">${p.tags.map(t => `<span class="proj-tag">${t}</span>`).join('')}</div>
             <div class="proj-title">${p.title}</div>
             <div class="proj-desc">${p.desc}</div>
             <div class="proj-links">
-              <a class="proj-link" href="${p.repo}" target="_blank"><i class="fab fa-github"></i> Repository</a>
-              <a class="proj-link" href="${p.repo}" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> View Live</a>
+              <a class="proj-link" href="${p.repo}" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </div>
           </div>
         `;
