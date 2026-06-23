@@ -421,6 +421,18 @@ document.addEventListener('keydown', e => {
 
 
 /* ──────────────────────────────────────
+   CONTACT FORM
+────────────────────────────────────── */
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const msg = document.getElementById('formSuccess');
+  msg.classList.add('show');
+  e.target.reset();
+  setTimeout(() => msg.classList.remove('show'), 5000);
+});
+
+
+/* ──────────────────────────────────────
    SCROLL REVEAL — IntersectionObserver
 ────────────────────────────────────── */
 let countersTriggered = false;
