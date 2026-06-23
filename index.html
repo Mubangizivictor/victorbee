@@ -184,14 +184,28 @@
         </div>
       </div>
 
-      <div class="contact-info reveal" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:20px;">
-        <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.7;">
-          The quickest way to reach me is directly on WhatsApp. Tap the button below and let's talk about your project — I reply fast.
-        </p>
-        <a href="https://wa.me/256740116746" target="_blank" class="btn btn--green" style="padding:14px 32px;font-size:1rem;">
-          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-        </a>
-      </div>
+      <form class="contact-form reveal" id="contactForm">
+        <div class="form-field">
+          <label>Name</label>
+          <input type="text" placeholder="Your name" required />
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="you@company.com" required />
+        </div>
+        <div class="form-field">
+          <label>Project type</label>
+          <input type="text" placeholder="Mobile App / Web / Both" />
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea rows="4" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--white" style="width:100%;justify-content:center;">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+        <p class="form-success" id="formSuccess">✓ Sent! I'll get back to you soon.</p>
+      </form>
     </div>
   </section>
 
