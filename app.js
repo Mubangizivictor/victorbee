@@ -221,7 +221,7 @@ window.addEventListener('scroll', () => {
 /* ──────────────────────────────────────
    MOBILE MENU
 ────────────────────────────────────── */
-const mobileMenu  = document.getElementById('mobileMenu');
+const mobileMenu   = document.getElementById('mobileMenu');
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileClose  = document.getElementById('mobileClose');
 
@@ -350,15 +350,15 @@ function renderSkills() {
 /* ──────────────────────────────────────
    MODAL
 ────────────────────────────────────── */
-const overlay   = document.getElementById('modalOverlay');
+const overlay    = document.getElementById('modalOverlay');
 const modalClose = document.getElementById('modalClose');
 
 function openModal(app) {
-  document.getElementById('modalNumber').textContent  = `Project ${app.num}`;
-  document.getElementById('modalTitle').textContent   = app.name;
-  document.getElementById('modalDesc').textContent    = app.desc;
-  document.getElementById('modalImg').src             = app.img;
-  document.getElementById('modalImg').alt             = app.name;
+  document.getElementById('modalNumber').textContent = `Project ${app.num}`;
+  document.getElementById('modalTitle').textContent  = app.name;
+  document.getElementById('modalDesc').textContent   = app.desc;
+  document.getElementById('modalImg').src            = app.img;
+  document.getElementById('modalImg').alt            = app.name;
 
   // badges
   const badgesEl = document.getElementById('modalBadges');
@@ -421,18 +421,6 @@ document.addEventListener('keydown', e => {
 
 
 /* ──────────────────────────────────────
-   CONTACT FORM
-────────────────────────────────────── */
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const msg = document.getElementById('formSuccess');
-  msg.classList.add('show');
-  e.target.reset();
-  setTimeout(() => msg.classList.remove('show'), 5000);
-});
-
-
-/* ──────────────────────────────────────
    SCROLL REVEAL — IntersectionObserver
 ────────────────────────────────────── */
 let countersTriggered = false;
@@ -477,11 +465,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderApps();
   renderSkills();
 
-  // Small delay so elements are in DOM before observing
   requestAnimationFrame(() => {
     observeAll();
 
-    // Immediately reveal anything already in viewport
     document.querySelectorAll('.reveal').forEach(el => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 60) el.classList.add('in');
